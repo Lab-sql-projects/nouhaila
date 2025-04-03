@@ -45,3 +45,10 @@ WHERE member_id NOT IN (
     FROM Payments 
     WHERE amount > 0
 );
+
+-- 6. DELETE (Remove members who are inactive for 6 months or more)
+DELETE FROM Members
+WHERE last_payment_date < CURDATE() - INTERVAL 6 MONTH
+  AND status = 'Inactive';
+
+
